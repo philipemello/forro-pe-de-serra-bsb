@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Forró Pé de Serra BSB</title>
+<meta name="description" content="Forró Pé de Serra BSB: história, cartazes e contribuição voluntária.">
+<meta property="og:title" content="Forró Pé de Serra BSB">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chango&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sol:#F2B817;--tijolo:#B8421E;--verde:#2F6B1F;--anil:#2A4BB5;--cafe:#2A1810;--creme:#F5EBD7;--rosa:#E8A8A0;--telha:#9E2B14;
+  --bg:var(--sol);--ink:var(--cafe);--card:var(--creme);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#d9a410;}}
+:root[data-theme="dark"]{--bg:#d9a410;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(64px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 Nunito,system-ui,sans-serif;overflow-x:hidden}
+/* ponto de bordado: fios paralelos sutis sobre cor chapada */
+.fio{background-image:repeating-linear-gradient(90deg,rgba(42,24,16,.06) 0 1px,transparent 1px 4px)}
+h1,h2,.logo{font-family:Chango,"Arial Black",sans-serif;font-weight:400;color:var(--sol);
+  -webkit-text-stroke:2px var(--cafe);paint-order:stroke fill;text-shadow:3px 3px 0 var(--cafe);line-height:1.05;margin:0}
+h2{font-size:clamp(2.2rem,8vw,3.6rem)}
+a{color:var(--anil);font-weight:700}
+:focus-visible{outline:3px solid var(--anil);outline-offset:3px}
+/* ponto de cruz */
+.cruz{height:14px;background:
+  conic-gradient(from 90deg at 50% 50%,var(--tijolo) 25%,var(--cafe) 0 50%,var(--creme) 0 75%,var(--tijolo) 0) 0 0/14px 14px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--verde);border-bottom:4px solid var(--cafe)}
+.bar{max-width:1080px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-size:1.1rem;-webkit-text-stroke:1.5px var(--cafe);text-shadow:2px 2px 0 var(--cafe);text-decoration:none;display:flex;align-items:center;gap:8px}
+nav{display:flex;gap:6px}
+nav a{color:var(--creme);text-decoration:none;font-weight:800;letter-spacing:.04em;padding:8px 12px;border-radius:6px}
+nav a:hover{background:var(--cafe)}
+.hero{background:var(--tijolo);color:var(--creme);text-align:center;padding:48px 16px 40px;position:relative}
+.hero .par{display:flex;justify-content:center;align-items:center;gap:clamp(8px,4vw,32px);margin-bottom:12px}
+.hero h1{font-size:clamp(2.3rem,11vw,5rem);max-width:12ch;margin:0 auto}
+.hero p{max-width:34ch;margin:16px auto 0;font-size:1.15rem;font-weight:700}
+.demo{display:inline-block;background:var(--cafe);color:var(--creme);font-size:.8rem;font-weight:800;padding:2px 10px;border-radius:99px}
+section{padding:56px 16px}
+.wrap{max-width:1080px;margin:0 auto}
+.painel{background:var(--verde);color:var(--creme);border:6px solid var(--cafe);outline:3px dotted var(--tijolo);outline-offset:-12px;padding:28px 22px;margin-top:20px;border-radius:4px}
+.painel a{color:var(--sol)}
+.texto{max-width:62ch}
+.texto h3{font-family:Chango,sans-serif;font-weight:400;margin:0 0 6px;font-size:1.5rem}
+/* moldura de renda */
+.renda{padding:12px;background:var(--creme);border-radius:10px;
+  background-image:radial-gradient(circle at 8px 0,transparent 6px,var(--creme) 6.5px),radial-gradient(circle at 8px 16px,transparent 6px,var(--creme) 6.5px);
+  box-shadow:0 0 0 3px var(--cafe),6px 6px 0 var(--cafe);margin:24px 0}
+.ph{aspect-ratio:3/2;display:grid;place-items:center;text-align:center;padding:12px;color:var(--cafe);font-weight:800;border-radius:4px}
+.ph svg{width:56px;height:56px;display:block;margin:0 auto 6px}
+.ph.cartaz{aspect-ratio:3/4}
+.c1{background-color:var(--sol)}.c2{background-color:var(--rosa)}.c3{background-color:#9cc08f}.c4{background-color:#a9b8ec}
+figcaption{font-size:.95rem;padding:8px 4px 0}
+figure{margin:0}
+/* carrossel */
+.car{position:relative;margin:24px 0}
+.car ul{list-style:none;margin:0;padding:0 0 4px;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.car ul::-webkit-scrollbar{display:none}
+.car li{flex:0 0 min(82%,380px);scroll-snap-align:center}
+.car.cart li{flex-basis:min(62%,260px)}
+.ctl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px}
+.ctl button{width:44px;height:44px;border-radius:50%;border:3px solid var(--cafe);background:var(--creme);color:var(--cafe);font:800 1.2rem/1 Nunito;cursor:pointer}
+.ctl button:hover{background:var(--sol)}
+.dots{display:flex;gap:8px}
+.dots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--cafe);background:transparent}
+.dots i.on{background:var(--cafe)}
+.sub{font-family:Chango,sans-serif;font-size:1.3rem;margin:36px 0 0}
+#evento{background:var(--creme)}
+#contribua{background:var(--anil);color:var(--creme)}
+#contribua h2{color:var(--sol)}
+.btn{display:inline-block;background:var(--sol);color:var(--cafe);border:4px solid var(--cafe);box-shadow:5px 5px 0 var(--cafe);padding:14px 26px;border-radius:8px;font-weight:800;font-size:1.15rem;text-decoration:none;margin-top:14px}
+.btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--cafe)}
+.vazio{border:3px dashed currentColor;padding:14px;border-radius:8px;max-width:50ch}
+footer{background:var(--cafe);color:var(--creme);text-align:center;padding:28px 16px}
+footer a{color:var(--sol)}
+.dança{display:flex;justify-content:center;gap:6px;margin-bottom:6px}
+@media (min-width:860px){
+  .sobre-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:start}
+  .evento-grid{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:40px;align-items:start}
+  .evento-grid .renda{margin-top:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.car ul{scroll-behavior:auto}}
+@media (prefers-reduced-motion:no-preference){.car ul{scroll-behavior:smooth}.btn{transition:transform .12s,box-shadow .12s}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="logo" href="#topo" aria-label="Forró Pé de Serra BSB, início"><svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><use href="#sol"/></svg>Forró Pé de Serra BSB</a>
+    <nav aria-label="Principal"><a href="#sobre">SOBRE</a><a href="#evento">EVENTO</a><a href="#contribua">CONTRIBUA</a></nav>
+  </div>
+  <div class="cruz" aria-hidden="true"></div>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="sol" viewBox="0 0 40 40"><g fill="#F2B817" stroke="#2A1810" stroke-width="2" stroke-linejoin="round"><path d="M20 2l4 6 7-3 1 7 7 1-3 7 6 4-6 4 3 7-7 1-1 7-7-3-4 6-4-6-7 3-1-7-7-1 3-7-6-4 6-4-3-7 7-1 1-7 7 3z"/><circle cx="20" cy="20" r="8" fill="#F2B817"/></g><path d="M16 18v1M24 18v1M15 23q5 4 10 0" fill="none" stroke="#2A1810" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="beija" viewBox="0 0 80 60"><g stroke="#2A1810" stroke-width="2" stroke-linejoin="round"><path d="M4 8l30 12 14-6 6 10-10 12 12 16-14-6-10 12-4-16-22-20z" fill="#2A4BB5"/><path d="M30 22l-12 22 18-14z" fill="#E8A8A0"/></g></symbol>
+    <symbol id="casal" viewBox="0 0 40 50"><g stroke="#2A1810" stroke-width="2"><circle cx="14" cy="8" r="5" fill="#B8421E"/><circle cx="28" cy="10" r="5" fill="#2A4BB5"/><path d="M14 14l-6 22h12l-2 12M28 16l4 20h-12l6 12" fill="none"/><path d="M8 36l-4 12M14 14l14 2" fill="none"/></g></symbol>
+  </defs>
+</svg>
+
+<main id="topo">
+  <div class="hero fio">
+    <div class="par" aria-hidden="true">
+      <svg width="90" height="68"><use href="#beija"/></svg>
+      <svg width="64" height="64"><use href="#sol"/></svg>
+      <svg width="90" height="68" style="transform:scaleX(-1)"><use href="#beija"/></svg>
+    </div>
+    <h1>Forró Pé de Serra BSB</h1>
+    <p id="hero-lema"></p>
+    <p><span class="demo">Conteúdo de demonstração</span></p>
+  </div>
+  <div class="cruz" aria-hidden="true"></div>
+
+  <section id="sobre" class="fio" aria-labelledby="t-sobre">
+    <div class="wrap">
+      <h2 id="t-sobre">Sobre</h2>
+      <div class="sobre-grid">
+        <div class="texto" id="sobre-texto"></div>
+        <div>
+          <figure class="renda" id="sobre-principal"></figure>
+        </div>
+      </div>
+      <p class="sub">Edições anteriores</p>
+      <div class="car" id="car-fotos" role="region" aria-roledescription="carrossel" aria-label="Fotografias de edições anteriores"></div>
+    </div>
+  </section>
+  <div class="cruz" aria-hidden="true"></div>
+
+  <section id="evento" aria-labelledby="t-evento">
+    <div class="wrap">
+      <h2 id="t-evento">Evento</h2>
+      <div class="evento-grid">
+        <figure class="renda" id="cartaz-atual"></figure>
+        <div><div class="texto" id="evento-texto"></div><div id="mapa"></div></div>
+      </div>
+      <p class="sub">Cartazes de edições anteriores</p>
+      <div class="car cart" id="car-cartazes" role="region" aria-roledescription="carrossel" aria-label="Cartazes de edições anteriores"></div>
+    </div>
+  </section>
+  <div class="cruz" aria-hidden="true"></div>
+
+  <section id="contribua" aria-labelledby="t-contribua">
+    <div class="wrap">
+      <h2 id="t-contribua">Contribua</h2>
+      <div class="texto" id="contribua-texto" style="margin-top:20px"></div>
+      <div id="contribua-acao"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="dança" aria-hidden="true"><svg width="36" height="44"><use href="#casal"/></svg><svg width="36" height="44"><use href="#casal"/></svg><svg width="36" height="44"><use href="#casal"/></svg></div>
+  <div id="rodape"></div>
+</footer>
+
+<script>
+/* ===== Camada de dados =====
+   A interface só chama content.get(). Na Fase 2, troque MockSource por SupabaseSource
+   mantendo a mesma interface: getContent(). */
+const MockSource = {
+  async saveContent(x){this.db=structuredClone(x)},
+  async getContent(){return structuredClone(this.db||(this.db=this.seed()))},
+  seed(){
+    return {
+      settings:{
+        lema:"Exemplo de frase de apresentação (demonstração).",
+        aboutHtml:"<h3>Nossa história</h3><p>Texto de demonstração. Aqui entra a história do Forró Pé de Serra BSB, escrita pela organização no painel administrativo.</p><p>Este conteúdo é <strong>fictício</strong> e será substituído pelo texto real.</p>",
+        eventHtml:"<h3>Edição atual</h3><p>Texto de demonstração. Data, horário, local e atrações serão informados pela organização.</p>",
+        contribHtml:"<p>Texto de demonstração. A contribuição é voluntária e não é necessária para participar do evento.</p>",
+        pixUrl:"", pixLabel:"Contribuir via Pix", pixEnabled:true, mapUrl:"", mapSrc:"",
+        igUrl:"https://www.instagram.com/forropedeserrabsb/", igLabel:"Siga no Instagram @forropedeserrabsb", igEnabled:true
+      },
+      aboutMain:{alt:"Foto principal do evento (demonstração)",caption:"Foto de demonstração"},
+      gallery:[1,2,3,4].map(n=>({alt:"Foto de demonstração "+n,caption:"Foto de demonstração "+n,published:true,position:n})),
+      currentPoster:{alt:"Cartaz atual (demonstração)",caption:"Cartaz de demonstração",title:"Edição atual"},
+      posters:[1,2,3].map(n=>({alt:"Cartaz antigo de demonstração "+n,caption:"Edição anterior "+n+" (demonstração)",published:true,position:n}))
+    };
+  }
+};
+const content = MockSource;
+
+const sunSvg='<svg viewBox="0 0 40 40" aria-hidden="true"><use href="#sol"/></svg>';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function ph(cls,i,label,src){if(src&&/^(data:image\/|https:)/.test(src))return `<img src="${esc(src)}" alt="${esc(label)}" loading="lazy" style="width:100%;display:block;border-radius:4px">`;return `<div class="ph ${cls} c${(i%4)+1} fio" role="img" aria-label="${esc(label)}"><div>${sunSvg}${esc(label)}</div></div>`}
+
+function carousel(el,items,cls){
+  const vis=items.filter(i=>i.published!==false).sort((a,b)=>a.position-b.position);
+  if(!vis.length){el.innerHTML='<p class="vazio">Ainda não há itens publicados.</p>';return}
+  el.innerHTML=`<ul tabindex="0" aria-label="Itens, use as setas do teclado">${vis.map((it,i)=>
+    `<li aria-label="${i+1} de ${vis.length}"><figure class="renda">${ph(cls,i,it.alt,it.src)}<figcaption>${esc(it.caption||"")}</figcaption></figure></li>`).join("")}</ul>
+  <div class="ctl"><button type="button" data-d="-1" aria-label="Anterior">‹</button><div class="dots" aria-hidden="true">${vis.map(()=>"<i></i>").join("")}</div><button type="button" data-d="1" aria-label="Próximo">›</button></div>`;
+  const ul=el.querySelector("ul"),dots=[...el.querySelectorAll(".dots i")],lis=[...ul.children];
+  const step=()=>lis[0].getBoundingClientRect().width+14;
+  const upd=()=>{const i=Math.round(ul.scrollLeft/step());dots.forEach((d,k)=>d.classList.toggle("on",k===Math.min(i,dots.length-1)))};
+  ul.addEventListener("scroll",upd,{passive:true});upd();
+  el.querySelectorAll("button").forEach(b=>b.onclick=()=>ul.scrollBy({left:step()*b.dataset.d,behavior:"smooth"}));
+  ul.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();ul.scrollBy({left:step(),behavior:"smooth"})}if(e.key==="ArrowLeft"){e.preventDefault();ul.scrollBy({left:-step(),behavior:"smooth"})}});
+}
+
+/* O texto rico vem do painel; sanitizar antes de inserir (Fase 2: DOMPurify). Aqui só tags permitidas. */
+function clean(html){
+  const ok=new Set(["H2","H3","P","STRONG","EM","B","I","A","UL","OL","LI","BR"]);
+  const t=document.createElement("template");t.innerHTML=html;
+  t.content.querySelectorAll("*").forEach(n=>{
+    if(!ok.has(n.tagName)){n.replaceWith(document.createTextNode(n.textContent));return}
+    [...n.attributes].forEach(a=>{if(!(n.tagName==="A"&&a.name==="href"&&/^https?:/i.test(a.value)))n.removeAttribute(a.name)});
+  });
+  return t.innerHTML;
+}
+
+async function render(){
+  const d=await content.getContent(), s=d.settings;
+  document.getElementById("hero-lema").textContent=s.lema;
+  document.getElementById("sobre-texto").innerHTML=clean(s.aboutHtml);
+  document.getElementById("sobre-principal").innerHTML=ph("",0,d.aboutMain.alt,d.aboutMain.src)+`<figcaption>${esc(d.aboutMain.caption)}</figcaption>`;
+  carousel(document.getElementById("car-fotos"),d.gallery,"");
+  document.getElementById("cartaz-atual").innerHTML=ph("cartaz",1,d.currentPoster.alt,d.currentPoster.src)+`<figcaption>${esc(d.currentPoster.caption)}</figcaption>`;
+  document.getElementById("evento-texto").innerHTML=clean(s.eventHtml);
+  carousel(document.getElementById("car-cartazes"),d.posters,"cartaz");
+  const okm=/^https:/i.test(s.mapUrl||"");
+  const mv=s.mapSrc?`<img src="${esc(s.mapSrc)}" alt="Mapa da localização do evento" loading="lazy" style="width:100%;display:block;border-radius:4px">`:`<svg viewBox="0 0 320 180" role="img" aria-label="Mapa de demonstração" style="width:100%;display:block;border-radius:4px;background:#e9e2cf"><path d="M0 120L320 60M60 0l40 180M200 0l-30 180M0 40l320 20" stroke="#fff" stroke-width="10"/><path d="M0 150h320" stroke="#F2B817" stroke-width="8"/><path d="M160 40a22 22 0 0 1 22 22c0 18-22 44-22 44S138 80 138 62a22 22 0 0 1 22-22z" fill="#B8421E" stroke="#2A1810" stroke-width="3"/><circle cx="160" cy="62" r="7" fill="#F5EBD7"/></svg>`;
+  document.getElementById("mapa").innerHTML=`<p class="sub" style="margin:28px 0 4px">Como chegar</p>`+(okm?`<a class="renda mapa" href="${esc(s.mapUrl)}" target="_blank" rel="noopener" aria-label="Abrir a localização no Google Maps (abre em nova aba)">${mv}<span style="display:block;padding:8px 4px 0;font-weight:800">Abrir no Google Maps</span></a>`:`<div class="renda mapa">${mv}<span style="display:block;padding:8px 4px 0">Localização ainda não informada.</span></div>`);
+  document.getElementById("contribua-texto").innerHTML=clean(s.contribHtml);
+  const ac=document.getElementById("contribua-acao");
+  if(s.pixEnabled){
+    ac.innerHTML=/^https:/i.test(s.pixUrl)
+      ?`<a class="btn" href="${esc(s.pixUrl)}" rel="noopener">${esc(s.pixLabel)}</a>`
+      :`<p class="vazio" style="margin-top:14px">O link de contribuição ainda não foi configurado.</p>`;
+  }
+  const r=document.getElementById("rodape");
+  r.innerHTML=(s.igEnabled&&/^https:/i.test(s.igUrl))
+    ?`<a href="${esc(s.igUrl)}" rel="noopener">${esc(s.igLabel)}</a>`
+    :`<span>Link do Instagram ainda não configurado.</span>`;
+}
+render();
+</script>
+<style>
+.mapa{display:block;text-decoration:none;color:var(--cafe)}
+#admin{font:400 1rem/1.5 Nunito,system-ui,sans-serif;background:#f7f1e3;color:#2A1810;min-height:100vh;padding-bottom:90px}
+#admin[hidden]{display:none}
+#admin .top{background:#2F6B1F;color:#F5EBD7;padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-bottom:4px solid #2A1810}
+#admin .top b{font-family:Chango,sans-serif;font-weight:400;font-size:1.1rem}
+#admin .top a{color:#F5EBD7}
+#admin .tabs{display:flex;gap:6px;padding:12px 16px 0;max-width:900px;margin:0 auto;flex-wrap:wrap}
+#admin .tabs button{border:2px solid #2A1810;background:#fff;padding:10px 16px;border-radius:8px 8px 0 0;font:800 1rem Nunito;cursor:pointer;color:#2A1810}
+#admin .tabs button[aria-selected=true]{background:#F2B817}
+#admin .pn{max-width:900px;margin:0 auto;padding:16px}
+#admin .box{background:#fff;border:2px solid #2A1810;border-radius:10px;padding:16px;margin-bottom:16px}
+#admin h3{margin:0 0 10px;font-size:1.15rem}
+#admin label{display:block;font-weight:700;margin:10px 0 4px}
+#admin input[type=text],#admin input[type=email]{width:100%;padding:10px;border:2px solid #2A1810;border-radius:6px;font:inherit;background:#fff;color:#2A1810;margin-top:4px}
+#admin .rte{min-height:130px;border:2px solid #2A1810;border-radius:0 0 6px 6px;padding:10px;background:#fff}
+#admin .tb{display:flex;gap:4px;flex-wrap:wrap;background:#F5EBD7;border:2px solid #2A1810;border-bottom:0;border-radius:6px 6px 0 0;padding:6px}
+#admin .b{border:2px solid #2A1810;background:#F5EBD7;color:#2A1810;border-radius:6px;padding:6px 12px;font:800 .95rem Nunito;cursor:pointer;min-height:40px}
+#admin .b:hover{background:#F2B817}
+#admin .p{background:#2F6B1F;color:#fff}
+#admin .x{background:#B8421E;color:#fff}
+#admin .row{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:2px dashed #cdbf9f}
+#admin .th{width:96px;height:72px;object-fit:cover;border-radius:6px;border:2px solid #2A1810;background:#F2B817;display:grid;place-items:center;font-size:.7rem;text-align:center}
+#admin .acts{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0;align-items:center}
+#admin .save{position:fixed;left:0;right:0;bottom:0;background:#2A1810;color:#F5EBD7;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:center;justify-content:space-between}
+#admin .hint{font-size:.9rem;opacity:.85}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:84px;background:#2F6B1F;color:#fff;padding:10px 18px;border-radius:8px;font-weight:800;z-index:50;max-width:90vw}
+#toast.err{background:#B8421E}
+#toast:empty{display:none}
+@media(max-width:520px){#admin .row{grid-template-columns:1fr}}
+</style>
+<script>
+/* Painel administrativo (Fase 1, dados mockados). Acesso: adicione #/admin ao endereço.
+   Persistência: apenas na memória da página (MockSource). Na Fase 2 troca-se por Supabase. */
+(()=>{
+const A=document.createElement("div");A.id="admin";A.hidden=true;document.body.append(A);
+const T=document.createElement("div");T.id="toast";T.setAttribute("role","status");document.body.append(T);
+let d=null,dirty=false,authed=false,tab="sobre",tt;
+const OK=["image/jpeg","image/png","image/webp","image/avif"];
+const TABS=[["sobre","Sobre"],["evento","Evento"],["contribua","Contribua"],["rodape","Rodapé"]];
+const toast=(m,err)=>{T.textContent=m;T.className=err?"err":"";clearTimeout(tt);tt=setTimeout(()=>T.textContent="",3500)};
+const get=(o,p)=>p.split(".").reduce((a,k)=>a&&a[k],o);
+const set=(o,p,v)=>{const k=p.split("."),l=k.pop();k.reduce((a,x)=>a[x],o)[l]=v};
+const tx=(p,l)=>`<label>${l}<input type="text" data-p="${p}" value="${esc(get(d,p)||"")}"></label>`;
+const ck=(p,l)=>`<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" data-p="${p}" ${get(d,p)?"checked":""}> ${l}</label>`;
+const CMDS=[["bold","Negrito"],["italic","Itálico"],["formatBlock:h3","Título"],["formatBlock:p","Parágrafo"],["insertUnorderedList","Lista"],["insertOrderedList","Lista numerada"],["createLink","Link"]];
+const rt=(k,l)=>`<label id="l-${k}">${l}</label><div class="tb">${CMDS.map(([c,n])=>`<button type="button" class="b" data-cmd="${c}">${n}</button>`).join("")}</div><div class="rte" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="l-${k}" data-rt="${k}">${d.settings[k]}</div>`;
+const FIL='<input type="file" accept="image/jpeg,image/png,image/webp,image/avif" ';
+const th=s=>s?`<img class="th" src="${esc(s)}" alt="">`:`<div class="th">Sem imagem</div>`;
+const slot=(p,l)=>{const o=get(d,p);return `<div class="box"><h3>${l}</h3><div class="row">${th(o.src)}<div>${FIL}data-up="${p}" aria-label="Enviar imagem: ${l}">${o.src?`<div class="acts"><button type="button" class="b x" data-act="rm" data-p="${p}.src">Remover imagem</button></div>`:""}${tx(p+".alt","Texto alternativo (obrigatório)")}${tx(p+".caption","Legenda (opcional)")}</div></div></div>`};
+const btn=(a,k,i,t,x)=>`<button type="button" class="b ${x||""}" data-act="${a}" data-k="${k}" data-i="${i}">${t}</button>`;
+const list=(k,l,poster)=>`<div class="box"><h3>${l}</h3>${d[k].map((it,i)=>`<div class="row">${th(it.src)}<div>${poster?tx(k+"."+i+".title","Edição"):""}${tx(k+"."+i+".alt","Texto alternativo")}${tx(k+"."+i+".caption","Legenda")}${ck(k+"."+i+".published","Publicado")}<div class="acts">${btn("up",k,i,"↑ Subir")}${btn("dn",k,i,"↓ Descer")}${poster?btn("cur",k,i,"Usar como cartaz atual"):""}${btn("del",k,i,"Excluir","x")}</div><label>Substituir arquivo${FIL}data-up="${k}:${i}"></label></div></div>`).join("")||'<p class="hint">Nenhum item ainda. Adicione o primeiro abaixo.</p>'}<label>Adicionar ${poster?"cartaz":"fotografia"}${FIL}data-up="${k}:add"></label></div>`;
+const P={
+ sobre:()=>`<div class="box"><h3>Textos</h3>${tx("settings.lema","Frase de abertura (topo do site)")}${rt("aboutHtml","Texto de apresentação")}</div>${slot("aboutMain","Fotografia principal")}${list("gallery","Carrossel de fotografias")}`,
+ evento:()=>`${slot("currentPoster","Cartaz atual")}<div class="box"><h3>Texto do evento</h3>${rt("eventHtml","Data, horário, local, atrações e demais informações")}</div><div class="box"><h3>Google Maps</h3>${tx("settings.mapUrl","Link do Google Maps (https)")}<div class="row">${th(d.settings.mapSrc)}<div>${FIL}data-up="settings.mapSrc" aria-label="Imagem do mapa">${d.settings.mapSrc?'<div class="acts"><button type="button" class="b x" data-act="rm" data-p="settings.mapSrc">Remover imagem</button></div>':""}<p class="hint">Envie um print do mapa. Ao tocar nele, o visitante abre o link acima.</p></div></div></div>${list("posters","Cartazes de edições anteriores",1)}`,
+ contribua:()=>`<div class="box"><h3>Contribuição</h3>${rt("contribHtml","Texto explicativo")}${tx("settings.pixUrl","Link de contribuição (https)")}${tx("settings.pixLabel","Texto do botão")}${ck("settings.pixEnabled","Mostrar botão no site")}</div>`,
+ rodape:()=>`<div class="box"><h3>Instagram</h3>${tx("settings.igUrl","URL do Instagram (https)")}${tx("settings.igLabel","Texto do link")}${ck("settings.igEnabled","Mostrar link no rodapé")}</div>`
+};
+function draw(){
+ if(!authed){A.innerHTML=`<div class="pn" style="max-width:440px;padding-top:60px"><div class="box"><h3>Painel · Forró Pé de Serra BSB</h3><p class="hint">Login de demonstração. A autenticação real (Supabase Auth) entra na Fase 2.</p><label>E-mail<input type="email" value="admin@demo" disabled></label><button type="button" class="b p" data-act="login">Entrar</button> <a href="#topo" style="margin-left:8px">Voltar ao site</a></div></div>`;return}
+ A.innerHTML=`<div class="top"><b>Painel · Forró Pé de Serra BSB</b><span><a href="#topo" data-act="site">Ver site público</a> &nbsp; <button type="button" class="b" data-act="out">Sair</button></span></div><div class="tabs" role="tablist">${TABS.map(([k,n])=>`<button type="button" role="tab" aria-selected="${k===tab}" data-tab="${k}">${n}</button>`).join("")}</div><div class="pn">${P[tab]()}</div><div class="save"><span class="hint" id="st">${dirty?"Alterações não salvas":"Tudo salvo (demonstração: guardado só na memória)"}</span><button type="button" class="b p" data-act="save">Salvar alterações</button></div>`;
+}
+const mark=()=>{dirty=true;const s=document.getElementById("st");if(s)s.textContent="Alterações não salvas"};
+const sync=()=>{A.querySelectorAll("[data-rt]").forEach(r=>d.settings[r.dataset.rt]=r.innerHTML);mark()};
+A.addEventListener("input",e=>{const t=e.target;
+ if(t.dataset.rt){d.settings[t.dataset.rt]=t.innerHTML;mark()}
+ else if(t.dataset.p){set(d,t.dataset.p,t.type==="checkbox"?t.checked:t.value);mark()}});
+A.addEventListener("mousedown",e=>{if(e.target.dataset.cmd)e.preventDefault()});
+A.addEventListener("click",e=>{
+ const t=e.target.closest("[data-cmd],[data-act],[data-tab]");if(!t)return;
+ const D=t.dataset;
+ if(D.tab){tab=D.tab;draw();return}
+ if(D.cmd){const[c,v]=D.cmd.split(":");
+  if(c==="createLink"){const u=prompt("Endereço do link (começa com https://)");if(u&&/^https?:\/\//i.test(u))document.execCommand(c,false,u);else if(u)toast("O link deve começar com https://",1)}
+  else document.execCommand(c,false,v||null);
+  sync();return}
+ const a=D.act,i=+D.i,l=d&&d[D.k];
+ if(a==="login"){authed=true;draw()}
+ else if(a==="out"){if(dirty&&!confirm("Há alterações não salvas. Sair mesmo assim?"))return;authed=false;dirty=false;route()}
+ else if(a==="site"){if(dirty&&!confirm("Há alterações não salvas. Sair mesmo assim?"))e.preventDefault()}
+ else if(a==="save")save();
+ else if(a==="rm"){set(d,D.p,"");mark();draw()}
+ else if(a==="up"||a==="dn"){const j=a==="up"?i-1:i+1;if(j<0||j>=l.length)return;[l[i],l[j]]=[l[j],l[i]];mark();draw()}
+ else if(a==="del"){if(confirm("Excluir este item? A exclusão só vale depois de salvar."))l.splice(i,1),mark(),draw()}
+ else if(a==="cur"){const o=l[i];d.currentPoster={src:o.src||"",alt:o.alt,caption:o.caption,title:o.title||""};mark();draw();toast("Cartaz atual definido. O histórico foi mantido.")}
+});
+A.addEventListener("change",e=>{const t=e.target,f=t.files&&t.files[0];if(!t.dataset.up||!f)return;
+ if(!OK.includes(f.type)){toast("Formato inválido. Use JPEG, PNG, WebP ou AVIF.",1);t.value="";return}
+ if(f.size>10*1048576){toast("Arquivo acima de 10 MB.",1);t.value="";return}
+ const r=new FileReader();r.onload=()=>{const[p,i]=t.dataset.up.split(":");
+  if(i==="add")d[p].push({src:r.result,alt:"",caption:"",title:"",published:true,position:d[p].length+1});
+  else if(i!==undefined)d[p][i].src=r.result;
+  else set(d,p.startsWith("settings")?p:p+".src",r.result);
+  mark();draw();toast("Imagem carregada. Preencha o texto alternativo e salve.")};
+ r.onerror=()=>toast("Não foi possível ler o arquivo.",1);r.readAsDataURL(f)});
+async function save(){
+ const bad=[["settings.pixUrl","O link de contribuição"],["settings.igUrl","A URL do Instagram"],["settings.mapUrl","O link do Google Maps"]].find(([p])=>{const v=get(d,p);return v&&!/^https:\/\//i.test(v)});
+ if(bad){toast(bad[1]+" deve começar com https://",1);return}
+ if([d.aboutMain,d.currentPoster,...d.gallery,...d.posters].some(o=>o.src&&!(o.alt||"").trim())){toast("Preencha o texto alternativo de todas as imagens.",1);return}
+ ["gallery","posters"].forEach(k=>d[k].forEach((o,i)=>o.position=i+1));
+ ["aboutHtml","eventHtml","contribHtml"].forEach(k=>d.settings[k]=clean(d.settings[k]));
+ try{await content.saveContent(d);dirty=false;draw();toast("Alterações salvas")}catch(_){toast("Não foi possível salvar. Tente de novo.",1)}
+}
+async function route(first){
+ const on=location.hash.startsWith("#/admin");
+ document.querySelectorAll("body>header,body>main,body>footer").forEach(e=>e.hidden=on);A.hidden=!on;
+ if(on){d=await content.getContent();draw();scrollTo(0,0)}
+ else{d=null;dirty=false;if(!first)render()}
+}
+addEventListener("hashchange",()=>route());
+addEventListener("beforeunload",e=>{if(dirty)e.preventDefault()});
+route(true);
+})();
+</script>
+</body>
+</html>
