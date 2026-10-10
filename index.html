@@ -6,6 +6,9 @@
 <title>Forró Pé de Serra BSB</title>
 <meta name="description" content="Forró Pé de Serra BSB: história, cartazes e contribuição voluntária.">
 <meta property="og:title" content="Forró Pé de Serra BSB">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chango&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
@@ -76,9 +79,28 @@ figure{margin:0}
 .btn{display:inline-block;background:var(--sol);color:var(--cafe);border:4px solid var(--cafe);box-shadow:5px 5px 0 var(--cafe);padding:14px 26px;border-radius:8px;font-weight:800;font-size:1.15rem;text-decoration:none;margin-top:14px}
 .btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--cafe)}
 .vazio{border:3px dashed currentColor;padding:14px;border-radius:8px;max-width:50ch}
+.pixcard{color:var(--cafe);display:grid;gap:18px;max-width:600px;grid-template-columns:1fr}
+.qrw{width:min(100%,240px);margin:0 auto;background:#fff;border:3px solid var(--cafe);border-radius:6px;overflow:hidden}
+.ph-qr{aspect-ratio:1;display:grid;place-items:center;text-align:center;font-weight:800;padding:12px;background:repeating-linear-gradient(45deg,#fff 0 8px,#f1e8d0 8px 16px)}
+.pixl{display:block;font-weight:800;margin-bottom:4px}
+.pixrow{margin-bottom:12px}
+.pixbox{display:flex;gap:8px;align-items:stretch}
+.pixbox code{flex:1;min-width:0;background:#fff;border:2px solid var(--cafe);border-radius:6px;padding:10px;word-break:break-all;font:700 .95rem ui-monospace,Menlo,monospace;max-height:6.5em;overflow:auto}
+.cpy{display:flex;align-items:center;gap:6px;border:3px solid var(--cafe);background:var(--sol);color:var(--cafe);border-radius:8px;padding:0 14px;font:800 .95rem Nunito,sans-serif;cursor:pointer;min-height:44px}
+.cpy:hover{background:var(--verde);color:#fff}
+.pixok{min-height:1.4em;font-weight:800;color:var(--verde);margin:0}
+@media(min-width:640px){.pixcard{grid-template-columns:240px 1fr;align-items:center}}
 footer{background:var(--cafe);color:var(--creme);text-align:center;padding:28px 16px}
 footer a{color:var(--sol)}
-.dança{display:flex;justify-content:center;gap:6px;margin-bottom:6px}
+.rod{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;text-align:left}
+.rod .logo{justify-self:start}
+#rodape{display:flex;gap:12px;justify-content:center}
+.soc{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--cafe);display:grid;place-items:center}
+.soc svg{width:22px;height:22px}
+a.soc:hover{background:var(--sol)}
+.soc.off{opacity:.45}
+.adm{justify-self:end;font-size:.75rem;letter-spacing:.08em;color:var(--creme);opacity:.7;font-weight:700}
+@media(max-width:640px){.rod{grid-template-columns:1fr auto;grid-template-areas:"l a" "s s"}.rod .logo{grid-area:l}.adm{grid-area:a}#rodape{grid-area:s}}
 @media (min-width:860px){
   .sobre-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:start}
   .evento-grid{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:40px;align-items:start}
@@ -156,8 +178,11 @@ footer a{color:var(--sol)}
 </main>
 
 <footer>
-  <div class="dança" aria-hidden="true"><svg width="36" height="44"><use href="#casal"/></svg><svg width="36" height="44"><use href="#casal"/></svg><svg width="36" height="44"><use href="#casal"/></svg></div>
-  <div id="rodape"></div>
+  <div class="rod">
+    <a class="logo" href="#topo" aria-label="Forró Pé de Serra BSB, voltar ao topo"><svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><use href="#sol"/></svg>Forró Pé de Serra BSB</a>
+    <div id="rodape"></div>
+    <a class="adm" href="#/admin">ADMIN</a>
+  </div>
 </footer>
 
 <script>
@@ -174,8 +199,8 @@ const MockSource = {
         aboutHtml:"<h3>Nossa história</h3><p>Texto de demonstração. Aqui entra a história do Forró Pé de Serra BSB, escrita pela organização no painel administrativo.</p><p>Este conteúdo é <strong>fictício</strong> e será substituído pelo texto real.</p>",
         eventHtml:"<h3>Edição atual</h3><p>Texto de demonstração. Data, horário, local e atrações serão informados pela organização.</p>",
         contribHtml:"<p>Texto de demonstração. A contribuição é voluntária e não é necessária para participar do evento.</p>",
-        pixUrl:"", pixLabel:"Contribuir via Pix", pixEnabled:true, mapUrl:"", mapSrc:"",
-        igUrl:"https://www.instagram.com/forropedeserrabsb/", igLabel:"Siga no Instagram @forropedeserrabsb", igEnabled:true
+        pixUrl:"", pixLabel:"Contribuir via Pix", pixEnabled:true, mapUrl:"", mapSrc:"", pixKey:"", pixCode:"", pixQrSrc:"",
+        igUrl:"https://www.instagram.com/forropedeserrabsb/", igLabel:"Siga no Instagram @forropedeserrabsb", igEnabled:true, ytUrl:"", mcUrl:""
       },
       aboutMain:{alt:"Foto principal do evento (demonstração)",caption:"Foto de demonstração"},
       gallery:[1,2,3,4].map(n=>({alt:"Foto de demonstração "+n,caption:"Foto de demonstração "+n,published:true,position:n})),
@@ -184,7 +209,52 @@ const MockSource = {
     };
   }
 };
-const content = MockSource;
+/* ===== Fonte Supabase (usada quando config.js tem URL e chave anon) ===== */
+const SupabaseSource=(()=>{
+  const C=window.SITE_CONFIG,sb=window.supabase.createClient(C.supabaseUrl,C.supabaseAnonKey);
+  const BUCKET="media",BASE=C.supabaseUrl.replace(/\/$/,"")+"/storage/v1/object/public/"+BUCKET+"/";
+  const blank=()=>({settings:{lema:"",aboutHtml:"",eventHtml:"",contribHtml:"",pixUrl:"",pixLabel:"Contribuir via Pix",pixEnabled:true,mapUrl:"",mapSrc:"",pixKey:"",pixCode:"",pixQrSrc:"",igUrl:"",igLabel:"Siga no Instagram",igEnabled:true,ytUrl:"",mcUrl:""},aboutMain:{src:"",alt:"",caption:""},currentPoster:{src:"",alt:"",caption:"",title:""}});
+  let last=new Set(),up=new Set();
+  const toPath=u=>u&&u.startsWith(BASE)?decodeURIComponent(u.slice(BASE.length)):null;
+  const paths=d=>new Set([d.aboutMain.src,d.currentPoster.src,d.settings.mapSrc,d.settings.pixQrSrc,...d.gallery.map(x=>x.src),...d.posters.map(x=>x.src)].map(toPath).filter(Boolean));
+  const fail=r=>{if(r.error)throw new Error(r.error.message)};
+  const isAdmin=async()=>{const r=await sb.from("admins").select("user_id").maybeSingle();return !!r.data};
+  return{
+    sb,
+    async session(){const{data}=await sb.auth.getSession();return !!data.session&&await isAdmin()},
+    async login(email,pw){const r=await sb.auth.signInWithPassword({email,password:pw});if(r.error)return{error:"E-mail ou senha incorretos."};if(!await isAdmin()){await sb.auth.signOut();return{error:"Esta conta não tem permissão de administrador."}}return{}},
+    async logout(){await sb.auth.signOut()},
+    async getContent(){
+      const[s,g,p]=await Promise.all([sb.from("site_settings").select("data").eq("id",1).maybeSingle(),sb.from("about_gallery").select("*").order("position"),sb.from("event_posters").select("*").order("position")]);
+      [s,g,p].forEach(fail);
+      const b=blank(),D=(s.data&&s.data.data)||{};
+      const d={settings:{...b.settings,...D.settings},aboutMain:{...b.aboutMain,...D.aboutMain},currentPoster:{...b.currentPoster,...D.currentPoster},
+        gallery:g.data.map(r=>({id:r.id,src:r.src,alt:r.alt_text,caption:r.caption,published:r.published,position:r.position})),
+        posters:p.data.map(r=>({id:r.id,src:r.src,alt:r.alt_text,caption:r.caption,title:r.title,published:r.published,position:r.position}))};
+      last=paths(d);return d;
+    },
+    async saveContent(d){
+      const now=new Date().toISOString();
+      fail(await sb.from("site_settings").upsert({id:1,data:{settings:d.settings,aboutMain:d.aboutMain,currentPoster:d.currentPoster},updated_at:now}));
+      for(const[t,k]of[["about_gallery","gallery"],["event_posters","posters"]]){
+        d[k].forEach(i=>{if(!i.id)i.id=crypto.randomUUID()});
+        if(d[k].length)fail(await sb.from(t).upsert(d[k].map((i,n)=>({id:i.id,src:i.src||"",alt_text:i.alt||"",caption:i.caption||"",...(k==="posters"?{title:i.title||""}:{}),position:n+1,published:i.published!==false,updated_at:now}))));
+        const q=sb.from(t).delete();
+        fail(await(d[k].length?q.not("id","in","("+d[k].map(i=>i.id).join(",")+")"):q.not("id","is",null)));
+      }
+      const cur=paths(d),old=[...new Set([...last,...up])].filter(x=>!cur.has(x));
+      if(old.length)await sb.storage.from(BUCKET).remove(old);
+      last=cur;up.clear();
+    },
+    async upload(f,folder){
+      const ext={"image/jpeg":"jpg","image/png":"png","image/webp":"webp","image/avif":"avif"}[f.type];
+      const path=folder+"/"+crypto.randomUUID()+"."+ext;
+      fail(await sb.storage.from(BUCKET).upload(path,f,{contentType:f.type,cacheControl:"31536000"}));
+      up.add(path);return sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+    }
+  };
+})();
+const content = (window.SITE_CONFIG&&SITE_CONFIG.supabaseUrl&&SITE_CONFIG.supabaseAnonKey&&window.supabase)?SupabaseSource:MockSource;
 
 const sunSvg='<svg viewBox="0 0 40 40" aria-hidden="true"><use href="#sol"/></svg>';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -215,7 +285,24 @@ function clean(html){
   return t.innerHTML;
 }
 
-async function render(){
+document.addEventListener("click",async e=>{
+  const b=e.target.closest("[data-copy]");if(!b)return;
+  const t=document.getElementById(b.dataset.copy).textContent;let ok=false;
+  try{await navigator.clipboard.writeText(t);ok=true}catch(_){
+    const a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;opacity:0";document.body.append(a);a.select();
+    try{ok=document.execCommand("copy")}catch(_){}a.remove()}
+  const m=document.getElementById("pixok");
+  if(m){m.textContent=ok?"Copiado!":"Não foi possível copiar. Selecione o texto e copie manualmente.";setTimeout(()=>m.textContent="",3000)}
+});
+function makeQr(code,el){
+  try{if(!window.qrcode||!el)throw 0;
+    const q=qrcode(0,"M");q.addData(code);q.make();const n=q.getModuleCount();let p="";
+    for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(q.isDark(r,c))p+=`M${c+2} ${r+2}h1v1h-1z`;
+    el.innerHTML=`<svg viewBox="0 0 ${n+4} ${n+4}" role="img" aria-label="QR Code Pix para contribuir" style="width:100%;height:auto;display:block" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><path d="${p}" fill="#000"/></svg>`;
+  }catch(_){if(el)el.innerHTML='<p style="padding:12px;font-weight:700">Não foi possível gerar o QR Code. Use o Pix copia e cola.</p>'}
+}
+async function render(){try{await renderInner()}catch(e){console.error(e);const h=document.getElementById("hero-lema");if(h)h.textContent="Não foi possível carregar o conteúdo agora. Tente novamente em instantes."}}
+async function renderInner(){
   const d=await content.getContent(), s=d.settings;
   document.getElementById("hero-lema").textContent=s.lema;
   document.getElementById("sobre-texto").innerHTML=clean(s.aboutHtml);
@@ -228,16 +315,31 @@ async function render(){
   const mv=s.mapSrc?`<img src="${esc(s.mapSrc)}" alt="Mapa da localização do evento" loading="lazy" style="width:100%;display:block;border-radius:4px">`:`<svg viewBox="0 0 320 180" role="img" aria-label="Mapa de demonstração" style="width:100%;display:block;border-radius:4px;background:#e9e2cf"><path d="M0 120L320 60M60 0l40 180M200 0l-30 180M0 40l320 20" stroke="#fff" stroke-width="10"/><path d="M0 150h320" stroke="#F2B817" stroke-width="8"/><path d="M160 40a22 22 0 0 1 22 22c0 18-22 44-22 44S138 80 138 62a22 22 0 0 1 22-22z" fill="#B8421E" stroke="#2A1810" stroke-width="3"/><circle cx="160" cy="62" r="7" fill="#F5EBD7"/></svg>`;
   document.getElementById("mapa").innerHTML=`<p class="sub" style="margin:28px 0 4px">Como chegar</p>`+(okm?`<a class="renda mapa" href="${esc(s.mapUrl)}" target="_blank" rel="noopener" aria-label="Abrir a localização no Google Maps (abre em nova aba)">${mv}<span style="display:block;padding:8px 4px 0;font-weight:800">Abrir no Google Maps</span></a>`:`<div class="renda mapa">${mv}<span style="display:block;padding:8px 4px 0">Localização ainda não informada.</span></div>`);
   document.getElementById("contribua-texto").innerHTML=clean(s.contribHtml);
-  const ac=document.getElementById("contribua-acao");
+  const ac=document.getElementById("contribua-acao");ac.innerHTML="";
   if(s.pixEnabled){
-    ac.innerHTML=/^https:/i.test(s.pixUrl)
-      ?`<a class="btn" href="${esc(s.pixUrl)}" rel="noopener">${esc(s.pixLabel)}</a>`
-      :`<p class="vazio" style="margin-top:14px">O link de contribuição ainda não foi configurado.</p>`;
+    const hasUrl=/^https:/i.test(s.pixUrl||""),hasQr=!!(s.pixQrSrc||s.pixCode),hasKey=!!(s.pixKey||s.pixCode);
+    const CP='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>';
+    const row=(id,l,v)=>`<div class="pixrow"><span class="pixl">${l}</span><div class="pixbox"><code id="${id}">${esc(v)}</code><button type="button" class="cpy" data-copy="${id}" aria-label="Copiar ${l}">${CP}<span>Copiar</span></button></div></div>`;
+    let h="";
+    if(hasQr||hasKey||!hasUrl){
+      h=`<div class="pixcard renda">`+(hasQr
+        ?`<div class="qrw" id="qrw">${s.pixQrSrc?`<img src="${esc(s.pixQrSrc)}" alt="QR Code Pix para contribuir" style="width:100%;display:block">`:""}</div>`
+        :`<div class="qrw ph-qr" role="img" aria-label="QR Code Pix ainda não configurado">QR Code Pix<br>ainda não configurado</div>`)
+        +`<div>`+(s.pixKey?row("pk","Chave Pix",s.pixKey):"")+(s.pixCode?row("pc","Pix copia e cola",s.pixCode):"")
+        +(hasKey?"":`<p class="vazio">A chave Pix ainda não foi informada.</p>`)+`<p class="pixok" id="pixok" role="status"></p></div></div>`;
+    }
+    if(hasUrl)h+=`<a class="btn" href="${esc(s.pixUrl)}" rel="noopener">${esc(s.pixLabel)}</a>`;
+    ac.innerHTML=h;
+    if(!s.pixQrSrc&&s.pixCode)makeQr(s.pixCode,document.getElementById("qrw"));
   }
-  const r=document.getElementById("rodape");
-  r.innerHTML=(s.igEnabled&&/^https:/i.test(s.igUrl))
-    ?`<a href="${esc(s.igUrl)}" rel="noopener">${esc(s.igLabel)}</a>`
-    :`<span>Link do Instagram ainda não configurado.</span>`;
+  const W='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+  const ICO={ig:`${W}<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg>`,
+    yt:`${W}<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>`,
+    mc:`${W}<path d="M7 17.5a3.5 3.5 0 0 1-.3-7A5.5 5.5 0 0 1 17.3 9.6 4 4 0 0 1 17 17.5z"/><path d="M9 13v2M12 12v3M15 13v2"/></svg>`};
+  const soc=[["ig","Instagram",s.igUrl],["yt","YouTube",s.ytUrl],["mc","Mixcloud",s.mcUrl]].filter(x=>x[0]!=="ig"||s.igEnabled);
+  document.getElementById("rodape").innerHTML=soc.map(([k,n,u])=>/^https:/i.test(u||"")
+    ?`<a class="soc" href="${esc(u)}" target="_blank" rel="noopener" aria-label="${n} (abre em nova aba)">${ICO[k]}</a>`
+    :`<span class="soc off" role="img" aria-label="${n}: link ainda não configurado">${ICO[k]}</span>`).join("");
 }
 render();
 </script>
@@ -255,7 +357,7 @@ render();
 #admin .box{background:#fff;border:2px solid #2A1810;border-radius:10px;padding:16px;margin-bottom:16px}
 #admin h3{margin:0 0 10px;font-size:1.15rem}
 #admin label{display:block;font-weight:700;margin:10px 0 4px}
-#admin input[type=text],#admin input[type=email]{width:100%;padding:10px;border:2px solid #2A1810;border-radius:6px;font:inherit;background:#fff;color:#2A1810;margin-top:4px}
+#admin input[type=text],#admin input[type=email],#admin input[type=password]{width:100%;padding:10px;border:2px solid #2A1810;border-radius:6px;font:inherit;background:#fff;color:#2A1810;margin-top:4px}
 #admin .rte{min-height:130px;border:2px solid #2A1810;border-radius:0 0 6px 6px;padding:10px;background:#fff}
 #admin .tb{display:flex;gap:4px;flex-wrap:wrap;background:#F5EBD7;border:2px solid #2A1810;border-bottom:0;border-radius:6px 6px 0 0;padding:6px}
 #admin .b{border:2px solid #2A1810;background:#F5EBD7;color:#2A1810;border-radius:6px;padding:6px 12px;font:800 .95rem Nunito;cursor:pointer;min-height:40px}
@@ -296,11 +398,11 @@ const list=(k,l,poster)=>`<div class="box"><h3>${l}</h3>${d[k].map((it,i)=>`<div
 const P={
  sobre:()=>`<div class="box"><h3>Textos</h3>${tx("settings.lema","Frase de abertura (topo do site)")}${rt("aboutHtml","Texto de apresentação")}</div>${slot("aboutMain","Fotografia principal")}${list("gallery","Carrossel de fotografias")}`,
  evento:()=>`${slot("currentPoster","Cartaz atual")}<div class="box"><h3>Texto do evento</h3>${rt("eventHtml","Data, horário, local, atrações e demais informações")}</div><div class="box"><h3>Google Maps</h3>${tx("settings.mapUrl","Link do Google Maps (https)")}<div class="row">${th(d.settings.mapSrc)}<div>${FIL}data-up="settings.mapSrc" aria-label="Imagem do mapa">${d.settings.mapSrc?'<div class="acts"><button type="button" class="b x" data-act="rm" data-p="settings.mapSrc">Remover imagem</button></div>':""}<p class="hint">Envie um print do mapa. Ao tocar nele, o visitante abre o link acima.</p></div></div></div>${list("posters","Cartazes de edições anteriores",1)}`,
- contribua:()=>`<div class="box"><h3>Contribuição</h3>${rt("contribHtml","Texto explicativo")}${tx("settings.pixUrl","Link de contribuição (https)")}${tx("settings.pixLabel","Texto do botão")}${ck("settings.pixEnabled","Mostrar botão no site")}</div>`,
- rodape:()=>`<div class="box"><h3>Instagram</h3>${tx("settings.igUrl","URL do Instagram (https)")}${tx("settings.igLabel","Texto do link")}${ck("settings.igEnabled","Mostrar link no rodapé")}</div>`
+ contribua:()=>`<div class="box"><h3>Contribuição</h3>${rt("contribHtml","Texto explicativo")}${tx("settings.pixKey","Chave Pix (aparece com botão de copiar)")}${tx("settings.pixCode","Pix copia e cola (opcional; gera o QR Code sozinho)")}<div class="row">${th(d.settings.pixQrSrc)}<div>${FIL}data-up="settings.pixQrSrc" aria-label="Imagem do QR Code Pix">${d.settings.pixQrSrc?'<div class="acts"><button type="button" class="b x" data-act="rm" data-p="settings.pixQrSrc">Remover QR Code</button></div>':""}<p class="hint">Se enviar a imagem do QR Code, ela é usada no lugar do QR gerado.</p></div></div>${tx("settings.pixUrl","Link de pagamento (opcional, https)")}${tx("settings.pixLabel","Texto do botão do link")}${ck("settings.pixEnabled","Mostrar botão no site")}</div>`,
+ rodape:()=>`<div class="box"><h3>Redes sociais (rodapé)</h3>${tx("settings.igUrl","URL do Instagram (https)")}${tx("settings.igLabel","Texto do link")}${ck("settings.igEnabled","Mostrar Instagram no rodapé")}${tx("settings.ytUrl","URL do YouTube (https)")}${tx("settings.mcUrl","URL do Mixcloud (https)")}<p class="hint">Ícones sem link aparecem apagados e sem clique.</p></div>`
 };
 function draw(){
- if(!authed){A.innerHTML=`<div class="pn" style="max-width:440px;padding-top:60px"><div class="box"><h3>Painel · Forró Pé de Serra BSB</h3><p class="hint">Login de demonstração. A autenticação real (Supabase Auth) entra na Fase 2.</p><label>E-mail<input type="email" value="admin@demo" disabled></label><button type="button" class="b p" data-act="login">Entrar</button> <a href="#topo" style="margin-left:8px">Voltar ao site</a></div></div>`;return}
+ if(!authed){A.innerHTML=content.sb?`<div class="pn" style="max-width:440px;padding-top:60px"><div class="box"><h3>Painel · Forró Pé de Serra BSB</h3><label>E-mail<input type="email" id="em" autocomplete="username"></label><label>Senha<input type="password" id="pw" autocomplete="current-password"></label><p class="hint" id="lerr" role="alert"></p><button type="button" class="b p" data-act="login">Entrar</button> <a href="#topo" style="margin-left:8px">Voltar ao site</a></div></div>`:`<div class="pn" style="max-width:440px;padding-top:60px"><div class="box"><h3>Painel · Forró Pé de Serra BSB</h3><p class="hint">Modo demonstração (sem Supabase configurado).</p><button type="button" class="b p" data-act="login">Entrar</button> <a href="#topo" style="margin-left:8px">Voltar ao site</a></div></div>`;return}
  A.innerHTML=`<div class="top"><b>Painel · Forró Pé de Serra BSB</b><span><a href="#topo" data-act="site">Ver site público</a> &nbsp; <button type="button" class="b" data-act="out">Sair</button></span></div><div class="tabs" role="tablist">${TABS.map(([k,n])=>`<button type="button" role="tab" aria-selected="${k===tab}" data-tab="${k}">${n}</button>`).join("")}</div><div class="pn">${P[tab]()}</div><div class="save"><span class="hint" id="st">${dirty?"Alterações não salvas":"Tudo salvo (demonstração: guardado só na memória)"}</span><button type="button" class="b p" data-act="save">Salvar alterações</button></div>`;
 }
 const mark=()=>{dirty=true;const s=document.getElementById("st");if(s)s.textContent="Alterações não salvas"};
@@ -309,7 +411,8 @@ A.addEventListener("input",e=>{const t=e.target;
  if(t.dataset.rt){d.settings[t.dataset.rt]=t.innerHTML;mark()}
  else if(t.dataset.p){set(d,t.dataset.p,t.type==="checkbox"?t.checked:t.value);mark()}});
 A.addEventListener("mousedown",e=>{if(e.target.dataset.cmd)e.preventDefault()});
-A.addEventListener("click",e=>{
+A.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.id==="pw")login()});
+A.addEventListener("click",async e=>{
  const t=e.target.closest("[data-cmd],[data-act],[data-tab]");if(!t)return;
  const D=t.dataset;
  if(D.tab){tab=D.tab;draw();return}
@@ -318,8 +421,8 @@ A.addEventListener("click",e=>{
   else document.execCommand(c,false,v||null);
   sync();return}
  const a=D.act,i=+D.i,l=d&&d[D.k];
- if(a==="login"){authed=true;draw()}
- else if(a==="out"){if(dirty&&!confirm("Há alterações não salvas. Sair mesmo assim?"))return;authed=false;dirty=false;route()}
+ if(a==="login")login();
+ else if(a==="out"){if(dirty&&!confirm("Há alterações não salvas. Sair mesmo assim?"))return;authed=false;dirty=false;if(content.logout)await content.logout();route()}
  else if(a==="site"){if(dirty&&!confirm("Há alterações não salvas. Sair mesmo assim?"))e.preventDefault()}
  else if(a==="save")save();
  else if(a==="rm"){set(d,D.p,"");mark();draw()}
@@ -327,27 +430,54 @@ A.addEventListener("click",e=>{
  else if(a==="del"){if(confirm("Excluir este item? A exclusão só vale depois de salvar."))l.splice(i,1),mark(),draw()}
  else if(a==="cur"){const o=l[i];d.currentPoster={src:o.src||"",alt:o.alt,caption:o.caption,title:o.title||""};mark();draw();toast("Cartaz atual definido. O histórico foi mantido.")}
 });
-A.addEventListener("change",e=>{const t=e.target,f=t.files&&t.files[0];if(!t.dataset.up||!f)return;
- if(!OK.includes(f.type)){toast("Formato inválido. Use JPEG, PNG, WebP ou AVIF.",1);t.value="";return}
- if(f.size>10*1048576){toast("Arquivo acima de 10 MB.",1);t.value="";return}
- const r=new FileReader();r.onload=()=>{const[p,i]=t.dataset.up.split(":");
-  if(i==="add")d[p].push({src:r.result,alt:"",caption:"",title:"",published:true,position:d[p].length+1});
-  else if(i!==undefined)d[p][i].src=r.result;
-  else set(d,p.startsWith("settings")?p:p+".src",r.result);
-  mark();draw();toast("Imagem carregada. Preencha o texto alternativo e salve.")};
- r.onerror=()=>toast("Não foi possível ler o arquivo.",1);r.readAsDataURL(f)});
+async function sniff(f){
+ const b=new Uint8Array(await f.slice(0,16).arrayBuffer()),at=(i,j)=>String.fromCharCode(...b.slice(i,j));
+ if(b[0]===0xFF&&b[1]===0xD8&&b[2]===0xFF)return"image/jpeg";
+ if(b[0]===0x89&&at(1,4)==="PNG")return"image/png";
+ if(at(0,4)==="RIFF"&&at(8,12)==="WEBP")return"image/webp";
+ if(at(4,8)==="ftyp"&&/^avi[fs]/.test(at(8,12)))return"image/avif";
+ return"";
+}
+const readUrl=f=>new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=no;r.readAsDataURL(f)});
+A.addEventListener("change",async e=>{
+ const t=e.target,f=t.files&&t.files[0];if(!t.dataset.up||!f)return;
+ const bad=m=>{toast(m,1);t.value=""};
+ if(!OK.includes(f.type))return bad("Formato inválido. Use JPEG, PNG, WebP ou AVIF.");
+ if(f.size>10*1048576)return bad("Arquivo acima de 10 MB.");
+ if(await sniff(f)!==f.type)return bad("O conteúdo do arquivo não corresponde ao formato informado.");
+ toast("Enviando imagem...");
+ try{
+  const url=await(content.upload?content.upload(f,t.dataset.up.split(/[.:]/)[0]):readUrl(f));
+  const[p,i]=t.dataset.up.split(":");
+  if(i==="add")d[p].push({src:url,alt:"",caption:"",title:"",published:true,position:d[p].length+1});
+  else if(i!==undefined)d[p][i].src=url;
+  else set(d,p.startsWith("settings")?p:p+".src",url);
+  mark();draw();toast("Imagem carregada. Preencha o texto alternativo e salve.");
+ }catch(err){console.error(err);toast("Falha no envio da imagem: "+(err.message||"erro"),1)}
+});
+async function login(){
+ if(!content.login){authed=true;draw();return}
+ const em=A.querySelector("#em").value.trim(),pw=A.querySelector("#pw").value,er=A.querySelector("#lerr");
+ er.textContent="Entrando...";
+ try{const r=await content.login(em,pw);if(r.error){er.textContent=r.error;return}
+  authed=true;d=await content.getContent();draw()}
+ catch(err){console.error(err);er.textContent="Não foi possível entrar agora. Tente novamente."}
+}
 async function save(){
- const bad=[["settings.pixUrl","O link de contribuição"],["settings.igUrl","A URL do Instagram"],["settings.mapUrl","O link do Google Maps"]].find(([p])=>{const v=get(d,p);return v&&!/^https:\/\//i.test(v)});
+ const bad=[["settings.pixUrl","O link de contribuição"],["settings.igUrl","A URL do Instagram"],["settings.ytUrl","A URL do YouTube"],["settings.mcUrl","A URL do Mixcloud"],["settings.mapUrl","O link do Google Maps"]].find(([p])=>{const v=get(d,p);return v&&!/^https:\/\//i.test(v)});
  if(bad){toast(bad[1]+" deve começar com https://",1);return}
  if([d.aboutMain,d.currentPoster,...d.gallery,...d.posters].some(o=>o.src&&!(o.alt||"").trim())){toast("Preencha o texto alternativo de todas as imagens.",1);return}
+ ["pixKey","pixCode"].forEach(k=>d.settings[k]=(d.settings[k]||"").trim());
+ if(d.settings.pixCode&&!/^000201/.test(d.settings.pixCode)){toast("O Pix copia e cola deve começar com 000201.",1);return}
  ["gallery","posters"].forEach(k=>d[k].forEach((o,i)=>o.position=i+1));
  ["aboutHtml","eventHtml","contribHtml"].forEach(k=>d.settings[k]=clean(d.settings[k]));
- try{await content.saveContent(d);dirty=false;draw();toast("Alterações salvas")}catch(_){toast("Não foi possível salvar. Tente de novo.",1)}
+ try{await content.saveContent(d);dirty=false;draw();toast("Alterações salvas")}catch(err){console.error(err);toast("Não foi possível salvar: "+(err.message||"erro desconhecido"),1)}
 }
 async function route(first){
  const on=location.hash.startsWith("#/admin");
  document.querySelectorAll("body>header,body>main,body>footer").forEach(e=>e.hidden=on);A.hidden=!on;
- if(on){d=await content.getContent();draw();scrollTo(0,0)}
+ if(on){try{if(content.session)authed=await content.session();d=await content.getContent()}catch(err){console.error(err);d=null}
+  if(d)draw();else A.innerHTML='<div class="pn"><div class="box">Não foi possível carregar o painel. Verifique a conexão e as configurações do Supabase.</div></div>';scrollTo(0,0)}
  else{d=null;dirty=false;if(!first)render()}
 }
 addEventListener("hashchange",()=>route());
